@@ -1,0 +1,30 @@
+name: CI-pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu:latest
+
+    steps:
+
+      - name: Checkoutcode
+        uses: actions/checkout@v3
+
+      - name: login to docker
+        uses: actions/login-action@v2
+        with:
+          username:
+          password:
+
+      - name: Build Docker images
+        run: |
+          docker build -t sahilmahat/cicd:${{ github.sha }} .
+
+      - name: Push Docker Image
+        run: |
+          docker push sahilmahat/cicd:${{ github.sha }}
