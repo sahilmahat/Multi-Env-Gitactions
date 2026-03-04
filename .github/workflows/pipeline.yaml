@@ -18,8 +18,8 @@ jobs:
       - name: login to docker
         uses: actions/login-action@v2
         with:
-          username:
-          password:
+          username: ${{secrets.DOCKERHUBUSER}}
+          password: ${{secrets.DOCKERHUBPASS}}
 
       - name: Build Docker images
         run: |
