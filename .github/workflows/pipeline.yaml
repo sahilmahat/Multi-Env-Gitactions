@@ -28,3 +28,40 @@ jobs:
       - name: Push Docker Image
         run: |
           docker push sahilmahat/cicd:${{ github.sha }}
+
+
+  deploy-dev:
+    needs: build
+    runs-on: ubuntu:latest
+    environment: dev
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Depoy on dev
+        run: |
+          echo "Deploy on dev env"
+
+  deploy-staging:
+    needs: deploy-dev
+    runs-on: ubuntu:latest
+    environment: staging
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Deploy on Stage
+        run: |
+          echo "Deply on Staging"
+
+  deploy-production:
+    needs: deploy-staging
+    runs-on: ubuntu:latest
+    environment: production
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Deploy on Prod
+        run: |
+          echo "Deploy on Prod"
