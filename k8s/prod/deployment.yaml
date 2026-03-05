@@ -7,13 +7,13 @@ metadata:
 spec:
   replicas: 3
   selector:
-    matchlabels:
+    matchLabels:
       app: multi-env-prod
   template:
     metadata:
       labels:
         app: multi-env-prod
-    specs:
+    spec:
       containers:
         - name: cicd-prod
           image: sahilmahat/multicicd:latest
