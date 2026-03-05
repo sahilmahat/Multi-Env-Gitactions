@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-prod
+  labels:
+    app: multi-env-prod
+spec:
+  replicas: 3
+  selector:
+    matchlabels:
+      app: multi-env-prod
+  template:
+    metadata:
+      labels:
+        app: multi-env-prod
+    specs:
+      containers:
+        - name: cicd-prod
+          image: sahilmahat/multicicd:latest
+          ports:
+          - containerPort: 5000
+          env:
+          - name: ENVIRONMENT
+            value: production
+  

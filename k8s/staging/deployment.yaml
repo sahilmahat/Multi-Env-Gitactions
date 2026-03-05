@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-stage
+  labels:
+    app: multi-env-stage
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: multi-env-stage
+  template:
+    metadata:
+      labels:
+        app: multi-env-stage
+    spec:
+      containers:
+      - name: multi-env-stage
+        image: sahilmahat/multicicd:latest
+        ports:
+        - containerPort: 80
+        env: 
+        - name: ENVIRONMENT
+          value: staging

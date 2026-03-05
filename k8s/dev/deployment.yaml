@@ -6,9 +6,18 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLables:
+    matchLabels:
       app: cicd-app-dev
-  templates:
+  template:
     metadata:
       labels:
         app: cicd-app-dev
+    spec:
+      containers:
+      - name: multienv-cicd
+        image: sahilmahat/multicicd:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: ENVIRONMENT
+          value: dev
