@@ -33,7 +33,8 @@ jobs:
       - name: Build Docker images
         run: |
           docker build -t sahilmahat/multicicd:${{ github.sha }}
-          docker tag sahilmahat/multicicd:${{ github.sha }} sahilmahat/multicicd:latest
+          docker tag sahilmahat/multicicd:${{ github.sha }} 
+          docker tag sahilmahat/multicicd:latest
 
       - name: Push Docker Image
         run: |
